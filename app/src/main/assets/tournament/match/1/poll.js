@@ -1,1 +1,0 @@
-onPollCallback([{"results":[]}]);
