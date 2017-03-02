@@ -3,7 +3,6 @@ package com.unt.hci.fantasycricket;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,20 +12,32 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-public class SquadsListAdaptor extends BaseAdapter {
+public class PlayerListAdaptor extends BaseAdapter {
 
     private Activity activity;
-    List<Squads.SquadsBean.PlayersBean> data;
-    private List<Bitmap> photos;
+    private List<Score.MatchInfoBean.TeamsBean.PlayersBean> data;
+    private HashMap<Integer, Integer> teamLogo;
     private static LayoutInflater inflater=null;
-    AssetManager assetManager;
+    private AssetManager assetManager;
 
 
-    public SquadsListAdaptor(Activity a, List<Squads.SquadsBean.PlayersBean> s, AssetManager am) {
+    public PlayerListAdaptor(Activity a, List<Score.MatchInfoBean.TeamsBean> s, AssetManager am) {
         activity = a;
-        data=s;
+        data = new ArrayList<>(); //holds merged list of players
+        teamLogo = new HashMap<>(); // player id --> team logo id
+
+        //Team beans have two teams. Combine players from both teams into list
+        for (int i =0; i < s.size(); i++) {
+            List<Score.MatchInfoBean.TeamsBean.PlayersBean> p = s.get(i).getPlayers();
+            for (int j = 0; j < p.size() ; j++){
+                data.add(p.get(j));
+                teamLogo.put(p.get(j).getId(), s.get(i).getTeam().getId());
+            }
+        }
         assetManager = am;
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -48,22 +59,30 @@ public class SquadsListAdaptor extends BaseAdapter {
         if(convertView==null)
             view = inflater.inflate(R.layout.player_row, null);
 
+        //reference layout elements
         TextView playerName = (TextView)view.findViewById(R.id.playerName);
         TextView playerPosition = (TextView)view.findViewById(R.id.playerPosition);
         ImageView playerImage=(ImageView)view.findViewById(R.id.playerImage);
         ImageView playerTeamLogo =(ImageView)view.findViewById(R.id.playerTeamLogo);
 
-        Squads.SquadsBean.PlayersBean player = data.get(position);
+        //get player data
+        Score.MatchInfoBean.TeamsBean.PlayersBean player = data.get(position);
         playerName.setText(player.getFullName());
         playerPosition.setText(player.getNationality());
+
+        //read img files
         try {
             playerImage.setImageDrawable(Drawable.createFromStream(assetManager.open("img/players/large/"+player.getId()+".png"), null));
-//            playerTeamLogo.setImageDrawable(Drawable.createFromStream(assetManager.open("img//"+player.getId()+".png"), null));
-
+            playerTeamLogo.setImageDrawable(Drawable.createFromStream(assetManager.open("img/logos/"+teamLogo.get(player.getId())+".png"), null));
         } catch (IOException e) {
             e.printStackTrace();
             Log.e("ERROR", "Invalid drawable file path!");
-       }
+            try {
+                playerTeamLogo.setImageDrawable(Drawable.createFromStream(assetManager.open("img/players/Photo-Missing.png"), null));
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
         return view;
     }
 }
