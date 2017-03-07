@@ -76,9 +76,10 @@ public class PlayerListAdaptor extends BaseAdapter {
             playerTeamLogo.setImageDrawable(Drawable.createFromStream(assetManager.open("img/logos/"+teamLogo.get(player.getId())+".png"), null));
         } catch (IOException e) {
             e.printStackTrace();
-            Log.e("ERROR", "Invalid drawable file path!");
+            Log.e("ERROR", "Invalid drawable file path!:"+player.getFullName()+": "+player.getId());
             try {
-                playerTeamLogo.setImageDrawable(Drawable.createFromStream(assetManager.open("img/players/Photo-Missing.png"), null));
+                playerImage.setImageDrawable(Drawable.createFromStream(assetManager.open("img/players/Photo-Missing.png"), null));
+//                playerTeamLogo.setImageDrawable(Drawable.createFromStream(assetManager.open("img/players/Photo-Missing.png"), null));
             } catch (IOException e1) {
                 e1.printStackTrace();
             }

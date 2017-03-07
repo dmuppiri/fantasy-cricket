@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //read resource file for match 1 into score
         assetManager = getResources().getAssets();
         Gson g = new Gson();
         String s;
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                // if user clicks on list item...
+                // TODO: if user clicks on list item...
             }
         });
 
