@@ -39,6 +39,7 @@ public class PlayerListAdaptor extends BaseAdapter {
             }
         }
         assetManager = am;
+        ;
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 

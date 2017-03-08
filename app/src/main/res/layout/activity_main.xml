@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -8,12 +9,46 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.unt.hci.fantasycricket.MainActivity">
+    tools:context="com.unt.hci.fantasycricket.MyTeamActivity"
+    android:orientation="vertical"
+    android:weightSum="1">
 
 
-    <ListView
+    <RelativeLayout
+        android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:id="@+id/playerList" />
+        android:layout_above="@+id/footer"
+        android:layout_alignParentTop="true">
+
+        <ListView
+            android:id="@+id/playerList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/footer">
+
+        <Button
+            android:id="@+id/butMyTeam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="My Team" />
+
+        <Button
+            android:id="@+id/butPlayers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/butMyTeam"
+            android:text="Players" />
+    </RelativeLayout>
+
+
 </RelativeLayout>
