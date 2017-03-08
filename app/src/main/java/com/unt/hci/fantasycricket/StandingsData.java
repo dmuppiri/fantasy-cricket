@@ -11,7 +11,7 @@ import java.util.List;
  * Created by jt on 2/26/17.
  */
 
-public class Standings {
+public class StandingsData {
 
     /**
      * tournamentId : {"name":"ipl2015","id":2785}
@@ -21,13 +21,13 @@ public class Standings {
     private TournamentIdBean tournamentId;
     private List<GroupsBean> groups;
 
-    public static Standings objectFromData(String str, String key) {
+    public static StandingsData objectFromData(String str, String key) {
         // expecting standings.json
 
         try {
             JSONObject jsonObject = new JSONObject(str);
 
-            return new Gson().fromJson(jsonObject.getString(str), Standings.class);
+            return new Gson().fromJson(jsonObject.getString(str), StandingsData.class);
         } catch (JSONException e) {
             e.printStackTrace();
         }

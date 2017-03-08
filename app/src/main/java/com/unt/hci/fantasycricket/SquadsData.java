@@ -6,19 +6,19 @@ import org.json.JSONObject;
 import java.util.List;
 
 
-public class Squads {
+public class SquadsData {
 
 
     private TournamentIdBean tournamentId;
     private List<SquadsBean> squads;
 
-    public static Squads objectFromData(String str) {
+    public static SquadsData objectFromData(String str) {
         // expecting squads.json
 
         try {
             JSONObject jsonObject = new JSONObject(str);
 
-            return new Gson().fromJson(jsonObject.getString(str), Squads.class);
+            return new Gson().fromJson(jsonObject.getString(str), SquadsData.class);
         } catch (JSONException e) {
             e.printStackTrace();
         }

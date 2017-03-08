@@ -9,7 +9,7 @@ import java.util.List;
  * Created by jt on 2/26/17.
  */
 
-public class TournamentSchedule {
+public class TournamentScheduleData {
 
     /**
      */
@@ -17,12 +17,12 @@ public class TournamentSchedule {
     private TournamentIdBean tournamentId;
     private List<ScheduleBean> schedule;
 
-    public static TournamentSchedule objectFromData(String str, String key) {
+    public static TournamentScheduleData objectFromData(String str, String key) {
         // expects matchSchedule.json
         try {
             JSONObject jsonObject = new JSONObject(str);
 
-            return new com.google.gson.Gson().fromJson(jsonObject.getString(str), TournamentSchedule.class);
+            return new com.google.gson.Gson().fromJson(jsonObject.getString(str), TournamentScheduleData.class);
         } catch (JSONException e) {
             e.printStackTrace();
         }

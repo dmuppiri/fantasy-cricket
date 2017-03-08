@@ -14,11 +14,16 @@ import java.io.IOException;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    //Read Data file into classes
+    private StandingsData standings;
+    private SquadsData squads;
+    private AssetManager assetManager;
+    private MyTeamData myTeam;
+
+    private ScoreData score; //reads scoring.json
     private ListView list;
     private PlayerListAdaptor adapter;
-    private Score score; //reads scoring.json
-//    Squads squads;
-    private AssetManager assetManager;
 
 
     @Override
@@ -32,7 +37,12 @@ public class MainActivity extends AppCompatActivity {
         String s;
         try {
             s =  IOUtils.toString(assetManager.open("tournament/match/1/scoring.json"), "UTF-8");
-            score = g.fromJson(s, Score.class);
+            score = g.fromJson(s, ScoreData.class);
+            s =  IOUtils.toString(assetManager.open("tournament/squads.json"), "UTF-8");
+            squads = g.fromJson(s,SquadsData.class);
+            s =  IOUtils.toString(assetManager.open("myTeam.json"), "UTF-8");
+            myTeam = g.fromJson(s,MyTeamData.class);
+
         } catch (IOException e) {
             e.printStackTrace();
             Log.e("ERROR", "Invalid drawable file path!");
@@ -44,8 +54,7 @@ public class MainActivity extends AppCompatActivity {
         list.setAdapter(adapter);
         list.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // TODO: if user clicks on list item...
             }
         });

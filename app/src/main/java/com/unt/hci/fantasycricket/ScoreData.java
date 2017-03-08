@@ -12,7 +12,7 @@ import java.util.List;
  * Created by jt on 2/26/17.
  */
 
-public class Score {
+public class ScoreData {
 
 
     /**
@@ -27,13 +27,13 @@ public class Score {
     private MatchIdBean matchId;
     private List<InningsBean> innings;
 
-    public static Score objectFromData(String str, String key) {
+    public static ScoreData objectFromData(String str, String key) {
 
         // expecting scoring.json
         try {
             JSONObject jsonObject = new JSONObject(str);
 
-            return new Gson().fromJson(jsonObject.getString(str), Score.class);
+            return new Gson().fromJson(jsonObject.getString(str), ScoreData.class);
         } catch (JSONException e) {
             e.printStackTrace();
         }

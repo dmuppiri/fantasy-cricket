@@ -12,7 +12,7 @@ import java.util.List;
  * Created by jt on 2/26/17.
  */
 
-public class TeamStats {
+public class TeamStatsData {
 
     /**
      * team : {"shortName":"Knight Riders","secondaryColor":"FFFFFF","primaryColor":"6F2C91","abbreviation":"KKR","type":"m","fullName":"Kolkata Knight Riders","id":5}
@@ -24,12 +24,12 @@ public class TeamStats {
     private TournamentIdBean tournamentId;
     private List<PlayersStatsBean> playersStats;
 
-    public static TeamStats objectFromData(String str, String key) {
+    public static TeamStatsData objectFromData(String str, String key) {
 
         try {
             JSONObject jsonObject = new JSONObject(str);
 
-            return new Gson().fromJson(jsonObject.getString(str), TeamStats.class);
+            return new Gson().fromJson(jsonObject.getString(str), TeamStatsData.class);
         } catch (JSONException e) {
             e.printStackTrace();
         }
