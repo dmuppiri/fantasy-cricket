@@ -1,16 +1,20 @@
 package com.unt.hci.fantasycricket;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-public class PlayerListActivity extends MyTeamActivity {
+public class PlayerListActivity extends MenuActivity {
     private ListView list;
     private PlayerListAdaptor adapter;
     DataLoader loader;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.e("INFO", "PlayerListActivity Create");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         loader = DataLoader.getInstance(null);

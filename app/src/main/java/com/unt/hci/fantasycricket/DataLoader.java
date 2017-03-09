@@ -52,7 +52,7 @@ public class DataLoader {
 
         } catch (IOException e) {
             e.printStackTrace();
-            Log.e("ERROR", "Invalid drawable file path!");
+            Log.e("ERROR", "Invalid file access");
         }
     }
     public ScoreData getScore(){return score;}

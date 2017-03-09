@@ -34,19 +34,19 @@
         android:id="@+id/footer">
 
         <Button
-            android:id="@+id/butMyTeam"
+            android:id="@+id/btnTeam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:onClick="onClick"
             android:text="My Team" />
 
         <Button
-            android:id="@+id/butPlayers"
+            android:id="@+id/btnPlayers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/butMyTeam"
+            android:layout_toEndOf="@+id/btnTeam"
+            android:onClick="onClick"
             android:text="Players" />
     </RelativeLayout>
 
