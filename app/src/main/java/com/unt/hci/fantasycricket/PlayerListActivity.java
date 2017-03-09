@@ -14,9 +14,9 @@ public class PlayerListActivity extends MenuActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.e("INFO", "PlayerListActivity Create");
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle("Players");
         loader = DataLoader.getInstance(null);
 
         //put list of players in listView
