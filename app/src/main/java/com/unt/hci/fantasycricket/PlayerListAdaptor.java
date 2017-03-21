@@ -19,26 +19,27 @@ import java.util.List;
 public class PlayerListAdaptor extends BaseAdapter {
 
     private Activity activity;
-    private List<Score.MatchInfoBean.TeamsBean.PlayersBean> data;
+    private List<ScoreData.MatchInfoBean.TeamsBean.PlayersBean> data;
     private HashMap<Integer, Integer> teamLogo;
     private static LayoutInflater inflater=null;
     private AssetManager assetManager;
 
 
-    public PlayerListAdaptor(Activity a, List<Score.MatchInfoBean.TeamsBean> s, AssetManager am) {
+    public PlayerListAdaptor(Activity a, List<ScoreData.MatchInfoBean.TeamsBean> s, AssetManager am) {
         activity = a;
         data = new ArrayList<>(); //holds merged list of players
         teamLogo = new HashMap<>(); // player id --> team logo id
 
         //Team beans have two teams. Combine players from both teams into list
         for (int i =0; i < s.size(); i++) {
-            List<Score.MatchInfoBean.TeamsBean.PlayersBean> p = s.get(i).getPlayers();
+            List<ScoreData.MatchInfoBean.TeamsBean.PlayersBean> p = s.get(i).getPlayers();
             for (int j = 0; j < p.size() ; j++){
                 data.add(p.get(j));
                 teamLogo.put(p.get(j).getId(), s.get(i).getTeam().getId());
             }
         }
         assetManager = am;
+        ;
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -66,7 +67,7 @@ public class PlayerListAdaptor extends BaseAdapter {
         ImageView playerTeamLogo =(ImageView)view.findViewById(R.id.playerTeamLogo);
 
         //get player data
-        Score.MatchInfoBean.TeamsBean.PlayersBean player = data.get(position);
+        ScoreData.MatchInfoBean.TeamsBean.PlayersBean player = data.get(position);
         playerName.setText(player.getFullName());
         playerPosition.setText(player.getNationality());
 
