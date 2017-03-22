@@ -41,7 +41,7 @@ public class DataLoader {
         Gson g = new Gson();
         String s;
         try {
-            s =  IOUtils.toString(assetManager.open("tournament/match/1/scoring.json"), "UTF-8");
+            s =  IOUtils.toString(assetManager.open("tournament/match/2/scoring.json"), "UTF-8");
             score = g.fromJson(s, ScoreData.class);
             s =  IOUtils.toString(assetManager.open("tournament/squads.json"), "UTF-8");
             squads = g.fromJson(s,SquadsData.class);
