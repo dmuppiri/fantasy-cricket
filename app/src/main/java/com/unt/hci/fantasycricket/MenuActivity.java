@@ -2,6 +2,7 @@ package com.unt.hci.fantasycricket;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,7 +21,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         am = this.getAssets();
-        loader = DataLoader.getInstance(am);
+        loader = DataLoader.getInstance(am, 1);
 
     }
 

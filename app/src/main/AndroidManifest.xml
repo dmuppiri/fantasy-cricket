@@ -16,6 +16,7 @@
         </activity>
         <activity android:name=".PlayerListActivity"  />
         <activity android:name=".MyTeamActivity" />
+        <activity android:name=".PlayerStatsActivity"/>
     </application>
 
 </manifest>

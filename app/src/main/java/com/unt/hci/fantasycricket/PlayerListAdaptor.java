@@ -42,7 +42,7 @@ public class PlayerListAdaptor extends BaseAdapter {
         ;
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
-
+    public int getPlayer_Id(int pos){return data.get(pos).getId();}
     public int getCount() {
         return data.size();
     }
