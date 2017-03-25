@@ -23,6 +23,10 @@ public class PlayerListActivity extends MenuActivity {
         setTitle("Players");
         loader = DataLoader.getInstance(null, match_num);
 
+        //Make TeamStatsData.PlayersStatsBean list
+
+
+
         //put list of players in listView
         adapter=new PlayerListAdaptor(this,loader.getScore().getMatchInfo().getTeams(), am);
         list=(ListView)findViewById(R.id.playerList);

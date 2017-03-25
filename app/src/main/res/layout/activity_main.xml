@@ -47,6 +47,15 @@
             android:layout_toEndOf="@+id/btnTeam"
             android:onClick="onClick"
             android:text="Players" />
+
+        <Button
+            android:id="@+id/btnNextMatch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@android:color/holo_green_dark"
+            android:onClick="onClick"
+            android:text="Go" />
     </RelativeLayout>
 
 

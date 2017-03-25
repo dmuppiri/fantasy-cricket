@@ -16,8 +16,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+
+
 public class PlayerListAdaptor extends BaseAdapter {
 
+    private class DataModel{
+        int id;
+        String name;
+        Drawable teamLogo;
+        Drawable picture;
+        public DataModel(){}
+    }
     private Activity activity;
     private List<ScoreData.MatchInfoBean.TeamsBean.PlayersBean> data;
     private HashMap<Integer, Integer> teamLogo;
@@ -31,15 +40,20 @@ public class PlayerListAdaptor extends BaseAdapter {
         teamLogo = new HashMap<>(); // player id --> team logo id
 
         //Team beans have two teams. Combine players from both teams into list
+        int pid;
         for (int i =0; i < s.size(); i++) {
             List<ScoreData.MatchInfoBean.TeamsBean.PlayersBean> p = s.get(i).getPlayers();
             for (int j = 0; j < p.size() ; j++){
                 data.add(p.get(j));
                 teamLogo.put(p.get(j).getId(), s.get(i).getTeam().getId());
+
+
+                //get the id
+                //pid = p.get(j).getId();
+                //pull info from TeamStats
             }
         }
         assetManager = am;
-        ;
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
     public int getPlayer_Id(int pos){return data.get(pos).getId();}

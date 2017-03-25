@@ -8,7 +8,10 @@ import android.widget.ListView;
 
 
 public class MyTeamActivity extends MenuActivity {
-    private DataLoader loader;
+    private ListView list;
+    private MyTeamListAdaptor adapter;
+    DataLoader loader;
+
     protected void onCreate(Bundle savedInstanceState) {
         Log.e("INFO", "MyTeamActivity Create");
         super.onCreate(savedInstanceState);
@@ -17,16 +20,17 @@ public class MyTeamActivity extends MenuActivity {
 
         // read my team file
 //  adb       loader = DataLoader.getInstance(null);
+        loader = DataLoader.getInstance(null);
 
         //put list of players in listView
-        MyTeamListAdaptor adapter = new MyTeamListAdaptor(this,loader, this.am);
-        ListView list=(ListView)findViewById(R.id.playerList);
+        adapter = new MyTeamListAdaptor(this,loader, this.am);
+        list=(ListView)findViewById(R.id.playerList);
         list.setAdapter(adapter);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // TODO: if user clicks on list item...
-            }
-        });
+//        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                // TODO: if user clicks on list item...
+//            }
+//        });
     }
 }
