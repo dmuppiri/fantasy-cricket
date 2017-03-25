@@ -21,7 +21,7 @@ public class PlayerListActivity extends MenuActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Players");
-        loader = DataLoader.getInstance(null, match_num);
+        loader = DataLoader.getInstance(null);
 
         //Make TeamStatsData.PlayersStatsBean list
 

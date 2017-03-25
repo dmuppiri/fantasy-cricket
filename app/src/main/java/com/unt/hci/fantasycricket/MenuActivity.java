@@ -21,7 +21,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         am = this.getAssets();
-        loader = DataLoader.getInstance(am, 1);
+        loader = DataLoader.getInstance(am);
 
     }
 

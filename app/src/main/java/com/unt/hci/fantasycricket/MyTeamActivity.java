@@ -19,7 +19,6 @@ public class MyTeamActivity extends MenuActivity {
         setTitle("My Team");
 
         // read my team file
-//  adb       loader = DataLoader.getInstance(null);
         loader = DataLoader.getInstance(null);
 
         //put list of players in listView

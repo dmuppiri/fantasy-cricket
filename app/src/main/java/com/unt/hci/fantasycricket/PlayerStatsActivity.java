@@ -34,7 +34,7 @@ public class PlayerStatsActivity extends MenuActivity{
         player_name_text = (TextView) findViewById(R.id.player_name);
 
         am = this.getAssets();
-        loader = DataLoader.getInstance(am, 1);
+        loader = DataLoader.getInstance(null);
         teamStatsData = loader.getTeamStatsData();
 
         player_id = getIntent().getExtras().getInt("Player_id");

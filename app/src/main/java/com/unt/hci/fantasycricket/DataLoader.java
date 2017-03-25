@@ -28,29 +28,30 @@ public class DataLoader {
     private ScoreData score; //reads scoring.json
     private TeamStatsData teamStatsData;
     private AssetManager assetManager;
+    private int match_number;
     HashMap<Integer, TeamStatsData> teamStats;
     HashMap<Integer, TeamStatsData.PlayersStatsBean> players;
+    HashMap<Integer, ScoreData> scores;
 
-    public static DataLoader getInstance(AssetManager am, int match_num){
+    public static DataLoader getInstance(AssetManager am){
         if( instance == null){
-            instance = new DataLoader(am, match_num);
+            instance = new DataLoader(am);
             Log.e("INFO", "New DataLoader!");
         }
         return instance;
     }
-    private DataLoader(AssetManager am, int match_num){
+    private DataLoader(AssetManager am){
         assetManager = am;
-        load(match_num);
+        load();
     }
-    private void load(int match_num){
+    private void load(){
         //load resource files
         Gson g = new Gson();
         players = new HashMap<>();
         teamStats = new HashMap<>();
+        scores = new HashMap<>();
         String s;
         try {
-            s =  IOUtils.toString(assetManager.open("tournament/match/"+match_num+"/scoring.json"), "UTF-8");
-            score = g.fromJson(s, ScoreData.class);
             s =  IOUtils.toString(assetManager.open("tournament/squads.json"), "UTF-8");
             squads = g.fromJson(s,SquadsData.class);
             s =  IOUtils.toString(assetManager.open("tournament/groupStandings.json"), "UTF-8");
@@ -59,6 +60,15 @@ public class DataLoader {
             myTeam = g.fromJson(s,MyTeamData.class);
             s =  IOUtils.toString(assetManager.open("tournament/1_tournamentStats.json"), "UTF-8");
             teamStatsData = g.fromJson(s,TeamStatsData.class);
+
+            //read all scoring files and put into hash map
+            for (int i =0; i < 60 ;i++){
+                s =  IOUtils.toString(assetManager.open("tournament/match/"+(i+1)+"/scoring.json"), "UTF-8");
+                score = g.fromJson(s, ScoreData.class);
+                scores.put(i, score);
+            }
+
+
 
             //collect and combine teams. Make hash map of player id --> playerStats
             String [] teamids = {"1", "3","4","5","6","8","9","62"};
