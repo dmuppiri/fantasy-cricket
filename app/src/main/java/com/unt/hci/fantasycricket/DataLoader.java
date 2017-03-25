@@ -58,8 +58,6 @@ public class DataLoader {
             standings = g.fromJson(s,StandingsData.class);
             s =  IOUtils.toString(assetManager.open("myTeam.json"), "UTF-8");
             myTeam = g.fromJson(s,MyTeamData.class);
-            s =  IOUtils.toString(assetManager.open("tournament/1_tournamentStats.json"), "UTF-8");
-            teamStatsData = g.fromJson(s,TeamStatsData.class);
 
             //read all scoring files and put into hash map
             for (int i =0; i < 60 ;i++){
@@ -70,7 +68,7 @@ public class DataLoader {
 
 
 
-            //collect and combine teams. Make hash map of player id --> playerStats
+            //collect and combine TeamStatsData. Make hash map of player id --> playerStats
             String [] teamids = {"1", "3","4","5","6","8","9","62"};
             TeamStatsData t;
             for (int i =0; i < teamids.length;i++){

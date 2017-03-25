@@ -48,8 +48,8 @@ public class PlayerStatsActivity extends MenuActivity{
             e.printStackTrace();
         }
         imageView.setImageBitmap(bitmapFactory.decodeStream(bmp));
-        player_name_text.setText(loader.getScore().getMatchInfo().getTeams().get(team).getPlayers().get(position).getFullName());
-
+//        player_name_text.setText(loader.getScore().getMatchInfo().getTeams().get(team).getPlayers().get(position).getFullName());
+        player_name_text.setText(loader.players.get(player_id).getPlayer().getFullName());
     }
 
 }
