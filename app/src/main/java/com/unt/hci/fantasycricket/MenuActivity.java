@@ -49,10 +49,20 @@ public class MenuActivity extends AppCompatActivity {
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.btnTeam:
-                startActivity(new Intent(MenuActivity.this, MyTeamActivity.class));
+                Intent intent = new Intent(MenuActivity.this, MyTeamActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 break;
             case R.id.btnPlayers:
-                startActivity(new Intent(MenuActivity.this, PlayerListActivity.class));
+                Intent intent1 = new Intent(MenuActivity.this, PlayerListActivity.class);
+                intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent1);
+                break;
+            case R.id.btnNextMatch:
+                loader.getMyTeam().setMatch(loader.getMyTeam().getMatch()+1);
+                Intent intent2 = new Intent(MenuActivity.this, PlayerListActivity.class);
+                intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent2);
                 break;
             default:
                 break;

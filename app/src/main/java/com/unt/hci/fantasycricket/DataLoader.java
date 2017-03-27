@@ -96,7 +96,7 @@ public class DataLoader {
         //create players by id
 
     }
-    public ScoreData getScore(){return score;}
+    public ScoreData getScore(int match_number){return scores.get(match_number);}
     public SquadsData getSquads(){return squads;}
     public MyTeamData getMyTeam(){return myTeam;}
     public StandingsData getStandings(){return standings;}

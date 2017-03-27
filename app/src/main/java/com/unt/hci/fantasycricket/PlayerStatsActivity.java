@@ -13,7 +13,7 @@ import java.io.InputStream;
  * Created by dpk on 3/23/17.
  */
 
-public class PlayerStatsActivity extends MenuActivity{
+public class  PlayerStatsActivity extends MenuActivity{
     private DataLoader loader;
     private TeamStatsData teamStatsData;
     private BitmapFactory bitmapFactory;

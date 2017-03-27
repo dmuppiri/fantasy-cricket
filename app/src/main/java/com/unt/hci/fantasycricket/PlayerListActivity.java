@@ -10,10 +10,9 @@ import android.widget.ListView;
 public class PlayerListActivity extends MenuActivity {
     private ListView list;
     private PlayerListAdaptor adapter;
+    private TeamStatsData.PlayersStatsBean playersStatsBean;
     DataLoader loader;
     Intent intent = null;
-    int match_num = 1;
-    int team = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +25,8 @@ public class PlayerListActivity extends MenuActivity {
         //Make TeamStatsData.PlayersStatsBean list
 
 
-
         //put list of players in listView
-        adapter=new PlayerListAdaptor(this,loader.getScore().getMatchInfo().getTeams(), am);
+        adapter=new PlayerListAdaptor(this,loader.getScore(loader.getMyTeam().getMatch()).getMatchInfo().getTeams(), am);
         list=(ListView)findViewById(R.id.playerList);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
