@@ -1,5 +1,6 @@
 package com.unt.hci.fantasycricket;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.provider.Settings;
@@ -10,21 +11,29 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.gson.Gson;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 public class MenuActivity extends AppCompatActivity {
 
     AssetManager am;
     private DataLoader loader;
-
+    public static String ApplicationPath = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        ApplicationPath = getFilesDir().getPath() + File.separator + "MyTeam.json";
         am = this.getAssets();
         loader = DataLoader.getInstance(am);
 
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -45,6 +54,7 @@ public class MenuActivity extends AppCompatActivity {
         }
         return true;
     }
+
 
     public void onClick(View v) {
         switch(v.getId()){

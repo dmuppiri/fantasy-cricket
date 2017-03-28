@@ -1,5 +1,6 @@
 package com.unt.hci.fantasycricket;
 
+import android.content.Context;
 import android.content.res.AssetManager;
 import android.util.Log;
 
@@ -7,7 +8,11 @@ import com.google.gson.Gson;
 
 import org.apache.commons.io.IOUtils;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 
 import android.content.res.AssetManager;
@@ -20,7 +25,7 @@ import android.content.res.AssetManager;
 public class DataLoader {
 
     private static DataLoader instance = null;
-
+    private static String path = MenuActivity.ApplicationPath;
     //Read Data file into classes
     private StandingsData standings;
     private SquadsData squads;
@@ -46,6 +51,7 @@ public class DataLoader {
     }
     private void load(){
         //load resource files
+
         Gson g = new Gson();
         players = new HashMap<>();
         teamStats = new HashMap<>();
@@ -56,9 +62,31 @@ public class DataLoader {
             squads = g.fromJson(s,SquadsData.class);
             s =  IOUtils.toString(assetManager.open("tournament/groupStandings.json"), "UTF-8");
             standings = g.fromJson(s,StandingsData.class);
-            s =  IOUtils.toString(assetManager.open("myTeam.json"), "UTF-8");
-            myTeam = g.fromJson(s,MyTeamData.class);
 
+            //Read Myteam Json from internal Storage
+            File file = new File(path);
+            if(file.exists()) {
+                System.out.println("MyTeam.json found");
+                InputStream fs = new FileInputStream(path);
+                s = IOUtils.toString(fs);
+                myTeam = g.fromJson(s, MyTeamData.class);
+            }
+            // If file doesn't exist read one from the assets folder
+            else {
+                System.out.println("File not Found");
+                s =  IOUtils.toString(assetManager.open("myTeam.json"), "UTF-8");
+                myTeam = g.fromJson(s,MyTeamData.class);
+                String json = g.toJson(myTeam);
+                FileOutputStream outputStream ;
+                try {
+                    outputStream = new FileOutputStream(path);
+                    outputStream.write(json.getBytes());
+                    outputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
             //read all scoring files and put into hash map
             for (int i =0; i < 60 ;i++){
                 s =  IOUtils.toString(assetManager.open("tournament/match/"+(i+1)+"/scoring.json"), "UTF-8");
@@ -96,6 +124,9 @@ public class DataLoader {
         //create players by id
 
     }
+
+
+
     public ScoreData getScore(int match_number){return scores.get(match_number);}
     public SquadsData getSquads(){return squads;}
     public MyTeamData getMyTeam(){return myTeam;}
