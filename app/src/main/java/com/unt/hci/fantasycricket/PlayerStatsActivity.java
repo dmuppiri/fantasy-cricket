@@ -38,8 +38,6 @@ public class  PlayerStatsActivity extends MenuActivity{
         teamStatsData = loader.getTeamStatsData();
 
         player_id = getIntent().getExtras().getInt("Player_id");
-        team = getIntent().getExtras().getInt("Team");
-        position = getIntent().getExtras().getInt("Position");
 
         System.out.println("Player id is "+player_id);
         try {

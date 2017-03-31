@@ -56,6 +56,7 @@ public class DataLoader {
         players = new HashMap<>();
         teamStats = new HashMap<>();
         scores = new HashMap<>();
+
         String s;
         try {
             s =  IOUtils.toString(assetManager.open("tournament/squads.json"), "UTF-8");
@@ -64,11 +65,13 @@ public class DataLoader {
             standings = g.fromJson(s,StandingsData.class);
 
             //Read Myteam Json from internal Storage
+
             File file = new File(path);
             if(file.exists()) {
                 System.out.println("MyTeam.json found");
                 InputStream fs = new FileInputStream(path);
                 s = IOUtils.toString(fs);
+                System.out.println("MyTeam.json" + s);
                 myTeam = g.fromJson(s, MyTeamData.class);
             }
             // If file doesn't exist read one from the assets folder
@@ -85,7 +88,6 @@ public class DataLoader {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             }
             //read all scoring files and put into hash map
             for (int i =0; i < 60 ;i++){
@@ -132,6 +134,17 @@ public class DataLoader {
     public MyTeamData getMyTeam(){return myTeam;}
     public StandingsData getStandings(){return standings;}
     public TeamStatsData getTeamStatsData(){return teamStatsData;}
-
+    public void WriteMyTeamData(MyTeamData myTeamData){
+        Gson g = new Gson();
+        String json = g.toJson(myTeamData);
+        FileOutputStream outputStream ;
+        try {
+            outputStream = new FileOutputStream(path);
+            outputStream.write(json.getBytes());
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

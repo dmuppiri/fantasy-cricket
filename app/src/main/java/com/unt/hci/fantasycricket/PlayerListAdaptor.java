@@ -46,8 +46,6 @@ public class PlayerListAdaptor extends BaseAdapter {
             for (int j = 0; j < p.size() ; j++){
                 data.add(p.get(j));
                 teamLogo.put(p.get(j).getId(), s.get(i).getTeam().getId());
-
-
                 //get the id
                 //pid = p.get(j).getId();
                 //pull info from TeamStats

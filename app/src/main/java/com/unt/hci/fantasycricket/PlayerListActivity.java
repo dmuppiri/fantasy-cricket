@@ -6,6 +6,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.List;
 
 public class PlayerListActivity extends MenuActivity {
     private ListView list;
@@ -13,6 +16,10 @@ public class PlayerListActivity extends MenuActivity {
     private TeamStatsData.PlayersStatsBean playersStatsBean;
     DataLoader loader;
     Intent intent = null;
+    private CharSequence teamFull = "Team full remove any player before adding";
+    private CharSequence playerinTeam = "Player already added to team";
+    private CharSequence addedPlayer = "Added player to Team";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,24 +41,39 @@ public class PlayerListActivity extends MenuActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 intent = new Intent(PlayerListActivity.this, PlayerStatsActivity.class);
                 intent.putExtra("Player_id",adapter.getPlayer_Id(position));
-                if(position<11) {
-                    intent.putExtra("Team", 0);
-                    intent.putExtra("Position", position);
-                }
-                else {
-                    intent.putExtra("Team", 1);
-                    intent.putExtra("Position", position-11);
-                }
-
-
                 startActivity(intent);
             }
         });
         list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
-                return false;
+                MyTeamData.PlayersBean playersBean = new MyTeamData.PlayersBean();
+                playersBean.setId(adapter.getPlayer_Id(position));
+                List<MyTeamData.PlayersBean> currentplayers;
+                currentplayers = loader.getMyTeam().getPlayers();
+                if (currentplayers.size() > 10) {
+                    Toast toast = Toast.makeText(getApplicationContext(), teamFull, Toast.LENGTH_SHORT);
+                    toast.show();
+                } else {
+                    boolean player_exists = false;
+                    for(int i=0; i<currentplayers.size(); i++){
+                        if(currentplayers.get(i).getId()==adapter.getPlayer_Id(position)){
+                            Toast toast = Toast.makeText(getApplicationContext(), playerinTeam, Toast.LENGTH_SHORT);
+                            toast.show();
+                            player_exists = true;
+                            break;
+                        }
+                    }
+                    if(!player_exists) {
+                        currentplayers.add(playersBean);
+                        loader.getMyTeam().setPlayers(currentplayers);
+                        loader.WriteMyTeamData(loader.getMyTeam());
+                        Toast toast = Toast.makeText(getApplicationContext(), addedPlayer, Toast.LENGTH_SHORT);
+                        toast.show();
+                        return false;
+                    }
+                }
+                return true;
             }
         });
 
