@@ -6,6 +6,7 @@ import android.content.res.AssetManager;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,6 +20,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -69,7 +71,15 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(intent1);
                 break;
             case R.id.btnNextMatch:
-                loader.getMyTeam().setMatch(loader.getMyTeam().getMatch()+1);
+                MyTeamData myTeamData = loader.getMyTeam();
+                UpdateScore updateScore = new UpdateScore(myTeamData);
+                myTeamData.setScore(myTeamData.getScore()+updateScore.getScore());
+                List<MyTeamData.PlayersBean> playersBeanList =  myTeamData.getPlayers();
+                playersBeanList.clear();
+                myTeamData.setPlayers(playersBeanList);
+                if(myTeamData.getMatch()<60)
+                    myTeamData.setMatch(loader.getMyTeam().getMatch()+1);
+                loader.WriteMyTeamData(myTeamData);
                 Intent intent2 = new Intent(MenuActivity.this, PlayerListActivity.class);
                 intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent2);

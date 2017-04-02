@@ -1,10 +1,13 @@
 package com.unt.hci.fantasycricket;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import java.util.List;
 
 
 public class MyTeamActivity extends MenuActivity {
@@ -25,11 +28,14 @@ public class MyTeamActivity extends MenuActivity {
         adapter = new MyTeamListAdaptor(this,loader, this.am);
         list=(ListView)findViewById(R.id.playerList);
         list.setAdapter(adapter);
-//        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                // TODO: if user clicks on list item...
-//            }
-//        });
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MyTeamActivity.this, PlayerStatsActivity.class);
+                intent.putExtra("Player_id",loader.getMyTeam().getPlayers().get(position).getId());
+                startActivity(intent);
+
+            }
+        });
     }
 }

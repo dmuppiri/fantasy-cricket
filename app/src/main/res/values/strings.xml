@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Fantasy Cricket</string>
     <string name="player_img">Player Image</string>
+    <string name="battingstats">BATTING STATISTICS</string>
+
 </resources>
