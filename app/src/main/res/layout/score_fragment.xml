@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="#9E9E9E">
+
+    <Button
+        android:id="@+id/close_button"
+        android:layout_width="100dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="OK" />
+    <TextView
+        android:id="@+id/ing1_batscr"
+        android:textSize="10pt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="TextView" />
+    <TextView
+        android:id="@+id/ing1_bowlscr"
+        android:textSize="10pt"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="TextView" />
+    <TextView
+        android:id="@+id/ing1_scr"
+        android:textSize="10pt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:textAlignment="center"
+        android:text="TextView" />
+    <TextView
+        android:id="@+id/ing2_batscr"
+        android:textSize="10pt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_marginTop="140dp"
+        android:text="TextView" />
+    <TextView
+        android:id="@+id/ing2_bowlscr"
+        android:textSize="10pt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:textAlignment="center"
+        android:text="TextView" />
+    <TextView
+        android:id="@+id/ing2_scr"
+        android:textSize="10pt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        android:textAlignment="center"
+        android:text="TextView" />
+    <TextView
+        android:id="@+id/tot_scr"
+        android:textSize="13pt"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="260dp"
+        android:textAlignment="center"
+        android:text="TextView" />
+    <ProgressBar
+        android:id="@+id/prgbar"
+        android:layout_marginTop="360dp"
+        android:layout_marginStart="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginEnd="40dp" />
+    <TextView
+        android:id="@+id/prg_text"
+        android:textSize="7pt"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="382dp"
+        android:textAlignment="center"
+        android:text="TextView" />
+</FrameLayout>

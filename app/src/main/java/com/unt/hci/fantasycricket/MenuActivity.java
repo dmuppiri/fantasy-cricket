@@ -1,5 +1,8 @@
 package com.unt.hci.fantasycricket;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -11,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import com.google.gson.Gson;
 
@@ -34,7 +38,6 @@ public class MenuActivity extends AppCompatActivity {
         ApplicationPath = getFilesDir().getPath() + File.separator + "MyTeam.json";
         am = this.getAssets();
         loader = DataLoader.getInstance(am);
-
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -80,9 +83,15 @@ public class MenuActivity extends AppCompatActivity {
                 if(myTeamData.getMatch()<60)
                     myTeamData.setMatch(loader.getMyTeam().getMatch()+1);
                 loader.WriteMyTeamData(myTeamData);
-                Intent intent2 = new Intent(MenuActivity.this, PlayerListActivity.class);
-                intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent2);
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                ScoreFragment fragment = ScoreFragment.getInstance(updateScore);
+                fragmentTransaction.add(R.id.fragment, fragment);
+                fragmentTransaction.commit();
+
+//                Intent intent2 = new Intent(MenuActivity.this, PlayerListActivity.class);
+//                intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(intent2);
                 break;
             default:
                 break;
