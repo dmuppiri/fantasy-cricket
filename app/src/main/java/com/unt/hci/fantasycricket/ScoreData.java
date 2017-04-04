@@ -1603,6 +1603,7 @@ public class ScoreData {
 
             public static class FowBean {
                 /**
+                 * Fall of wicket
                  * playerId : 167
                  * r : 8
                  * w : 1

@@ -1,6 +1,18 @@
 <resources>
     <string name="app_name">Fantasy Cricket</string>
     <string name="player_img">Player Image</string>
+    <string name="player_name">PLAYER NAME</string>
     <string name="battingstats">BATTING STATISTICS</string>
+    <string name="runs">RUNS:</string>
+    <string name="SR">STRIKE RATE:</string>
+    <string name="sixes">SIXES:</string>
+    <string name="fours">FOURS:</string>
+    <string name="fifties">FIFTIES:</string>
+    <string name="hundreds">HUNDREDS:</string>
+    <string name="bowlingstats">BOWLING STATISTICS</string>
+    <string name="wkts">WICKETS:</string>
+    <string name="ecnmy">ECONOMY:</string>
+    <string name="wide">WIDES:</string>
+    <string name="nb">NO-BALLS:</string>
 
 </resources>
