@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -26,6 +28,16 @@ public class  PlayerStatsActivity extends MenuActivity{
 
     private ImageView imageView;
     private TextView player_name_text;
+    private TextView player_runs;
+    private TextView player_sr;
+    private TextView player_six;
+    private TextView player_four;
+    private TextView player_fifty;
+    private TextView player_hundred;
+    private TextView player_wickets;
+    private TextView player_economy;
+    private TextView player_wide;
+    private TextView player_noball;
     private Button add_player;
 
     private int player_id;
@@ -42,6 +54,16 @@ public class  PlayerStatsActivity extends MenuActivity{
         setContentView(R.layout.activity_playerstats);
         imageView = (ImageView) findViewById(R.id.img_view);
         player_name_text = (TextView) findViewById(R.id.player_name);
+        player_runs = (TextView) findViewById(R.id.player_runs);
+        player_sr = (TextView) findViewById(R.id.playere_sr);
+        player_six = (TextView) findViewById(R.id.player_six);
+        player_four = (TextView) findViewById(R.id.player_four);
+        player_fifty =(TextView) findViewById(R.id.player_fifty);
+        player_hundred =(TextView) findViewById(R.id.player_hundred);
+        player_wickets = (TextView) findViewById(R.id.player_wickets);
+        player_economy = (TextView) findViewById(R.id.player_economy);
+        player_wide = (TextView) findViewById(R.id.player_wide);
+        player_noball = (TextView) findViewById(R.id.player_noball);
         add_player =(Button) findViewById(R.id.add);
 
         am = this.getAssets();
@@ -60,6 +82,16 @@ public class  PlayerStatsActivity extends MenuActivity{
         imageView.setImageBitmap(bitmapFactory.decodeStream(bmp));
 //        player_name_text.setText(loader.getScore().getMatchInfo().getTeams().get(team).getPlayers().get(position).getFullName());
         player_name_text.setText(loader.players.get(player_id).getPlayer().getFullName());
+        player_runs.setText("RUNS:" + " " + loader.players.get(player_id).getStats().get(2).getBattingStats().getR());
+        player_sr.setText("STRIKE-RATE:" + " " + loader.players.get(player_id).getStats().get(2).getBattingStats().getSr());
+        player_six.setText("SIXES:" + " " + loader.players.get(player_id).getStats().get(2).getBattingStats().get_$6s());
+        player_four.setText("FOURS:" + " " + loader.players.get(player_id).getStats().get(2).getBattingStats().get_$4s());
+        player_fifty.setText("FIFTIES:" + " " + loader.players.get(player_id).getStats().get(2).getBattingStats().get_$50s());
+        player_hundred.setText("HUNDREDS:" + " " + loader.players.get(player_id).getStats().get(2).getBattingStats().get_$100s());
+        player_wickets.setText("WICKETS" + " " + loader.players.get(player_id).getStats().get(2).getBowlingStats().getW());
+        player_economy.setText("ECONOMY:" + " " + loader.players.get(player_id).getStats().get(2).getBowlingStats().getE());
+        player_wide.setText("WIDE-BALLS:" + " " + loader.players.get(player_id).getStats().get(2).getBowlingStats().getWb());
+        player_noball.setText("NO-BALLS:" + " " + loader.players.get(player_id).getStats().get(2).getBowlingStats().getNb());
         for(int i=0; i<myPlayers.size();i++) {
             if(myPlayers.get(i).getId()==player_id){
                 playerInTeam = true;
