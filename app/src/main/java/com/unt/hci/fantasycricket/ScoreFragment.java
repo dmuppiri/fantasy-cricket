@@ -2,6 +2,7 @@ package com.unt.hci.fantasycricket;
 
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,13 +65,16 @@ public class ScoreFragment extends Fragment {
         match_score.setText("Match Score :  "+updateScore.getScore());
 
         prgressbar.setProgress(updateScore.getMatch_number()+1);
-        prg_text.setText(updateScore.getMatch_number()+1+"/60");
+        prg_text.setText(updateScore.getMatch_number()+"/60");
 
 
         closebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getFragmentManager().beginTransaction().remove(ScoreFragment.this).commit();
+                Intent intent = new Intent(getActivity(), PlayerListActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                getActivity().startActivity(intent);
             }
         });
         return view;
